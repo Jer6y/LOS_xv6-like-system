@@ -1,0 +1,35 @@
+//测试锁的时候使用的main函数
+#include <def.h>
+#include <platform.h>
+#include <string.h>
+struct cpu cpus[CPUS];
+struct spinlock u;
+static void cpus_init()
+{
+    for(size_t i=0;i<CPUS;i++)
+    {
+        cpus[i].run =0;
+        cpus[i].int_depth=0;
+        cpus[i].int_enable=0;
+    }
+}
+int s =0;
+void main()
+{
+    if(r_tp()==0)
+    {
+        init_lock(&u,"test");
+        cpus_init();
+        kinit();
+        s =1;
+    }
+    while(s!=1) ;
+        void * p =0;
+        while(p =kalloc())
+        {
+            printf("%p\n",p);
+            // for(int i=0;i<10000000;i++);
+        }
+    while(1);
+    return;
+}

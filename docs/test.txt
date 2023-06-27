@@ -1,0 +1,54 @@
+// 测试riscv的各个函数时
+// 使用的start函数
+void start()
+{
+    w_int_on();
+    uint64 x = r_int();
+    w_int_off();
+    x = r_int();
+    w_mcause(0x12);
+    x = r_mcause();
+    w_medeleg(0x1234);
+    x = r_medeleg();
+    w_mepc(0x56);
+    x = r_mepc();
+    x = r_mhartid();
+    w_mideleg(0x78);
+    x = r_mideleg();
+    w_mie(r_mie()|MEIE_S|MTIE_S|MSIE_S);
+    x = r_mie();
+
+    x = r_mip();
+    w_mscratch(0x15a0);
+    x = r_mscratch();
+
+    x = r_mstatus();
+    w_mtval(0x12a);
+    x = r_mtval();
+    w_mtvec(0x5678);
+    x = r_mtvec();
+    
+    w_satp(0x1);
+    x = r_satp();
+
+    w_scause(0x1);
+    x = r_scause();
+    w_sepc(0x2);
+    x = r_sepc();
+    w_sie(r_sie()|SEIE);
+
+    x = r_sie();
+    
+    x = r_sip();
+    w_sscratch(0x2);
+    x = r_sscratch();
+
+    x = r_sstatus();
+    w_stval(0x2);
+    x = r_stval();
+    w_stvec(0x3450);
+    x = r_stvec();
+    w_tp(0x4);
+    x = r_tp();
+    while(1);
+}
